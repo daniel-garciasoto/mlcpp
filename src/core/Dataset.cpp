@@ -3,7 +3,7 @@
 //
 
 #include "../../include/core/Dataset.h"
-
+using namespace std;
 
 namespace mlcpp {
     Dataset::Dataset(vector<vector<double> > features, vector<int> labels) {
@@ -11,7 +11,7 @@ namespace mlcpp {
         this->labels_ = labels;
     }
 
-    static optional<Dataset> from_csv(const string &filepath, bool has_header = true, int label_column = -1) {
+    optional<Dataset> from_csv(const string &filepath, bool has_header, int label_column) {
         // 1. Verify if it ends with .csv
         if (filepath.size() < 4 ||
             filepath.substr(filepath.size() - 4) != ".csv") {

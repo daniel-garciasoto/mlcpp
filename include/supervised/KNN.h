@@ -7,13 +7,12 @@
 #include <vector>
 #include "../core/Dataset.h"
 #include "../core/Distance.h"
-using namespace std;
+
 
 namespace mlcpp {
     class KNN {
 
     public:
-
         explicit KNN(int k = 3, DistanceMetric distance = euclidean_distance);
         void fit(Dataset& dataset);
         int predict(const vector<double>& sample) const;
@@ -24,7 +23,7 @@ namespace mlcpp {
         int k_;
         DistanceMetric distance_;
         vector<vector<double>> X_train_;
-        vector<int> Y_train_;
+        vector<int> y_train_;
 
         vector<size_t> find_k_nearest(const vector<double>& sample) const;
         int majority_vote(const vector<size_t>& neighbor_indices) const;
