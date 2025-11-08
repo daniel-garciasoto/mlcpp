@@ -2,33 +2,61 @@
 
 #include "include/core/Dataset.h"
 #include "include/supervised/KNN.h"
+#include <iostream>
 
+using namespace std;
 
 int main() {
-    auto dataset = mlcpp::Dataset::from_csv("data/iris.csv");
-    dataset->normalize();
+    try {
+        cout << "=== KNN Classifier Test ===" << endl;
 
-    auto [train, test] = dataset->train_test_split(0.2);
+        // 1. Load dataset
+        cout << "Loading dataset..." << endl;
+        auto opt_dataset = mlcpp::Dataset::from_csv("data/iris.csv");
 
-    mlcpp::KNN model(5);
-    model.fit(train);
+        if (!opt_dataset) {
+            cerr << "Error: Could not load dataset!" << endl;
+            return 1;
+        }
 
-    // 1. Predict a sample
-    vector<double> single_sample = {5.1, 3.5, 1.4, 0.2};
-    int label = model.predict(single_sample);
-    cout << "Predicted label: " << label << endl;
+        mlcpp::Dataset dataset = *opt_dataset;
+        cout << "Dataset loaded: " << dataset.size() << " samples, "
+             << dataset.num_features() << " features" << endl;
 
-    // 2. Predict multiple samples
-    vector<int> predictions = model.predict(test.get_features());
-    cout << "Predictions: ";
-    for (int pred : predictions) {
-        cout << pred << " ";
+        // 2. Normalize
+        cout << "Normalizing..." << endl;
+        dataset.normalize();
+
+        // 3. Split train/test
+        cout << "Splitting dataset..." << endl;
+        auto [train, test] = dataset.train_test_split(0.2, 42);
+        cout << "Train: " << train.size() << " samples" << endl;
+        cout << "Test: " << test.size() << " samples" << endl;
+
+        // 4. Train KNN
+        cout << "Training KNN..." << endl;
+        mlcpp::KNN model(3);
+        model.fit(train);
+        cout << "Model trained with k=" << model.get_k() << endl;
+
+        // 5. Predict one sample
+        cout << "Testing single prediction..." << endl;
+        const auto& test_features = test.get_features();
+        if (!test_features.empty()) {
+            int pred = model.predict(test_features[0]);
+            cout << "First test sample predicted as: " << pred << endl;
+        }
+
+        // 6. Evaluate
+        cout << "Evaluating model..." << endl;
+        double accuracy = model.score(test);
+        cout << "Accuracy: " << (accuracy * 100) << "%" << endl;
+
+        cout << "=== Test Complete ===" << endl;
+        return 0;
+
+    } catch (const exception& e) {
+        cerr << "Exception: " << e.what() << endl;
+        return 1;
     }
-    cout << endl;
-
-    // 3. Evaluate accuracy
-    double acc = model.score(test);
-    cout << "Accuracy: " << acc * 100 << "%" << endl;
-
-    return 0;
 }

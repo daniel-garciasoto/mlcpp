@@ -11,89 +11,84 @@ namespace mlcpp {
         this->labels_ = labels;
     }
 
-    optional<Dataset> from_csv(const string &filepath, bool has_header, int label_column) {
-        // 1. Verify if it ends with .csv
-        if (filepath.size() < 4 ||
-            filepath.substr(filepath.size() - 4) != ".csv") {
+    optional<Dataset> Dataset::from_csv(const string &filepath, bool has_header, int label_column) {
+        if (filepath.size() < 4 || filepath.substr(filepath.size() - 4) != ".csv") {
             return {};
         }
 
-        // 2. Open the file
         ifstream file(filepath);
         if (!file.is_open()) {
             return {};
         }
 
-        // 3. Jump the line if it has a header
         string line;
         if (has_header) {
             getline(file, line);
         }
 
-        // 4. Read data
         vector<vector<double> > features;
         vector<int> labels;
+        map<string, int> label_map;
+        int next_label_id = 0;
+        int num_cols = 0;
 
         while (getline(file, line)) {
             istringstream line_stream(line);
             string cell;
-            vector<double> row; // Temporal row for features
+            vector<double> row;
             int col_index = 0;
-            int num_cols = 0;
 
-            // Count columns (only first row)
-            if (features.empty()) {
+            // Calculate the columns from the first line
+            if (num_cols == 0) {
                 istringstream temp_stream(line);
                 while (getline(temp_stream, cell, ',')) {
                     num_cols++;
                 }
                 line_stream.clear();
-                line_stream.str(line); // Reset stream
+                line_stream.str(line);
             }
 
-            // Determinate label's indexes
-            int actual_label_col = label_column;
-            if (label_column == -1) {
-                actual_label_col = num_cols - 1; // Last column
-            }
-
+            int actual_label_col = (label_column == -1) ? num_cols - 1 : label_column;
             int label = 0;
             bool label_found = false;
 
-            // Read each cell
             while (getline(line_stream, cell, ',')) {
-                try {
-                    double value = stod(cell); // String to double
-                    if (col_index == actual_label_col) {
-                        // It's the label's column
-                        label = static_cast<int>(value);
+                if (col_index == actual_label_col) {
+                    // Column of labels
+                    try {
+                        // Try as a number
+                        label = static_cast<int>(stod(cell));
                         label_found = true;
-                    } else {
-                        // It's a feature
-                        row.push_back(value);
+                    } catch (...) {
+                        // It's text -> map to a number
+                        if (label_map.find(cell) == label_map.end()) {
+                            label_map[cell] = next_label_id++;
+                        }
+                        label = label_map[cell];
+                        label_found = true;
                     }
-                } catch (const invalid_argument &e) {
-                    // Error
-                    return {};
+                } else {
+                    // Features column
+                    try {
+                        double value = stod(cell);
+                        row.push_back(value);
+                    } catch (...) {
+                        // Non-numerical feature - error
+                        return {};
+                    }
                 }
                 col_index++;
             }
-
-            // Save the row and the label
-            if (label_found) {
+            if (label_found && !row.empty()) {
                 features.push_back(row);
                 labels.push_back(label);
             }
         }
-
         file.close();
 
-        // 5. Verify that the data is read
         if (features.empty()) {
             return {};
         }
-
-        // 6. Create and return the Dataset
         return Dataset(features, labels);
     }
 
