@@ -1,0 +1,262 @@
+\doxysection{mlcpp\+::Dataset Class Reference}
+\hypertarget{classmlcpp_1_1_dataset}{}\label{classmlcpp_1_1_dataset}\index{mlcpp::Dataset@{mlcpp::Dataset}}
+
+
+Container class for machine learning datasets.  
+
+
+
+
+{\ttfamily \#include $<$Dataset.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmlcpp_1_1_dataset_ae6944868a91f03c37a468773bb535b01}\label{classmlcpp_1_1_dataset_ae6944868a91f03c37a468773bb535b01} 
+{\bfseries Dataset} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. Creates an empty dataset. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classmlcpp_1_1_dataset_a8bdd7f9129f8ed08579d1d8ef0a7fb2f}{Dataset}} (std\+::vector$<$ std\+::vector$<$ double $>$ $>$ features, std\+::vector$<$ int $>$ labels)
+\begin{DoxyCompactList}\small\item\em Constructs a dataset with given features and labels. \end{DoxyCompactList}\item 
+std\+::pair$<$ \mbox{\hyperlink{classmlcpp_1_1_dataset_ae6944868a91f03c37a468773bb535b01}{Dataset}}, \mbox{\hyperlink{classmlcpp_1_1_dataset_ae6944868a91f03c37a468773bb535b01}{Dataset}} $>$ \mbox{\hyperlink{classmlcpp_1_1_dataset_ac45123e439a3a5fb67d1c839703b8c24}{train\+\_\+test\+\_\+split}} (double test\+\_\+ratio=0.\+1, int seed=41) const
+\begin{DoxyCompactList}\small\item\em Splits the dataset into training and testing sets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmlcpp_1_1_dataset_a264eb45d44561681e37ade4a8d860327}{normalize}} ()
+\begin{DoxyCompactList}\small\item\em Normalizes all features to the range \mbox{[}0, 1\mbox{]} using min-\/max scaling. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmlcpp_1_1_dataset_ae1ce2e5fffa4ec7b791025c1cd5b2916}{standardize}} ()
+\begin{DoxyCompactList}\small\item\em Standardizes all features to have mean=0 and standard deviation=1. \end{DoxyCompactList}\item 
+const std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \& \mbox{\hyperlink{classmlcpp_1_1_dataset_a76d3093866cd708c9fc6d5f128cad79c}{get\+\_\+features}} () const
+\begin{DoxyCompactList}\small\item\em Gets the feature matrix (read-\/only). \end{DoxyCompactList}\item 
+const std\+::vector$<$ int $>$ \& \mbox{\hyperlink{classmlcpp_1_1_dataset_ac5c6e3124e609ecaccc841d46ba2f017}{get\+\_\+labels}} () const
+\begin{DoxyCompactList}\small\item\em Gets the label vector (read-\/only). \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classmlcpp_1_1_dataset_af03b606152a2e4fa9690fb082e31bebf}{size}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of samples in the dataset. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classmlcpp_1_1_dataset_a1b14c140e2abc0db9c133d46afcccc93}{num\+\_\+features}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of features per sample. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::optional$<$ \mbox{\hyperlink{classmlcpp_1_1_dataset_ae6944868a91f03c37a468773bb535b01}{Dataset}} $>$ \mbox{\hyperlink{classmlcpp_1_1_dataset_a624748e7e3da9066b41458a9062f0cb0}{from\+\_\+csv}} (const std\+::string \&filepath, bool has\+\_\+header=true, int label\+\_\+column=-\/1)
+\begin{DoxyCompactList}\small\item\em Loads a dataset from a CSV file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Container class for machine learning datasets. 
+
+Stores features (input data) and labels (output data) for supervised learning tasks. Provides utilities for loading, splitting, and normalizing data. 
+
+\label{doc-constructors}
+\Hypertarget{classmlcpp_1_1_dataset_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classmlcpp_1_1_dataset_a8bdd7f9129f8ed08579d1d8ef0a7fb2f}\index{mlcpp::Dataset@{mlcpp::Dataset}!Dataset@{Dataset}}
+\index{Dataset@{Dataset}!mlcpp::Dataset@{mlcpp::Dataset}}
+\doxysubsubsection{\texorpdfstring{Dataset()}{Dataset()}}
+{\footnotesize\ttfamily \label{classmlcpp_1_1_dataset_a8bdd7f9129f8ed08579d1d8ef0a7fb2f} 
+mlcpp\+::\+Dataset\+::\+Dataset (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ double $>$ $>$}]{features}{, }\item[{std\+::vector$<$ int $>$}]{labels}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a dataset with given features and labels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em features} & 2D vector where each row is a sample and each column is a feature \\
+\hline
+{\em labels} & Vector of integer labels corresponding to each sample \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classmlcpp_1_1_dataset_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmlcpp_1_1_dataset_a624748e7e3da9066b41458a9062f0cb0}\index{mlcpp::Dataset@{mlcpp::Dataset}!from\_csv@{from\_csv}}
+\index{from\_csv@{from\_csv}!mlcpp::Dataset@{mlcpp::Dataset}}
+\doxysubsubsection{\texorpdfstring{from\_csv()}{from\_csv()}}
+{\footnotesize\ttfamily \label{classmlcpp_1_1_dataset_a624748e7e3da9066b41458a9062f0cb0} 
+optional$<$ \mbox{\hyperlink{classmlcpp_1_1_dataset_ae6944868a91f03c37a468773bb535b01}{Dataset}} $>$ mlcpp\+::\+Dataset\+::from\+\_\+csv (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filepath}{, }\item[{bool}]{has\+\_\+header}{ = {\ttfamily true}, }\item[{int}]{label\+\_\+column}{ = {\ttfamily -\/1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Loads a dataset from a CSV file. 
+
+Supports both numeric and text labels (text labels are automatically mapped to integers). The CSV file should have features as columns and samples as rows.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filepath} & Path to the CSV file \\
+\hline
+{\em has\+\_\+header} & Whether the first row contains column headers (default\+: true) \\
+\hline
+{\em label\+\_\+column} & Index of the label column, -\/1 for last column (default\+: -\/1) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Optional \doxylink{classmlcpp_1_1_dataset}{Dataset} object. Returns empty optional if loading fails.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Text labels are automatically converted to numeric IDs (0, 1, 2, ...) 
+
+All feature columns must contain numeric values
+\end{DoxyNote}
+Example usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ dataset\ =\ \mbox{\hyperlink{classmlcpp_1_1_dataset_a624748e7e3da9066b41458a9062f0cb0}{Dataset::from\_csv}}(\textcolor{stringliteral}{"{}data/iris.csv"{}},\ \textcolor{keyword}{true},\ -\/1);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (dataset)\ \{}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Loaded\ "{}}\ <<\ dataset-\/>size()\ <<\ \textcolor{stringliteral}{"{}\ samples"{}}\ <<\ endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \Hypertarget{classmlcpp_1_1_dataset_a76d3093866cd708c9fc6d5f128cad79c}\index{mlcpp::Dataset@{mlcpp::Dataset}!get\_features@{get\_features}}
+\index{get\_features@{get\_features}!mlcpp::Dataset@{mlcpp::Dataset}}
+\doxysubsubsection{\texorpdfstring{get\_features()}{get\_features()}}
+{\footnotesize\ttfamily \label{classmlcpp_1_1_dataset_a76d3093866cd708c9fc6d5f128cad79c} 
+const std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \& mlcpp\+::\+Dataset\+::get\+\_\+features (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the feature matrix (read-\/only). 
+
+\begin{DoxyReturn}{Returns}
+Constant reference to the 2D feature vector 
+\end{DoxyReturn}
+\Hypertarget{classmlcpp_1_1_dataset_ac5c6e3124e609ecaccc841d46ba2f017}\index{mlcpp::Dataset@{mlcpp::Dataset}!get\_labels@{get\_labels}}
+\index{get\_labels@{get\_labels}!mlcpp::Dataset@{mlcpp::Dataset}}
+\doxysubsubsection{\texorpdfstring{get\_labels()}{get\_labels()}}
+{\footnotesize\ttfamily \label{classmlcpp_1_1_dataset_ac5c6e3124e609ecaccc841d46ba2f017} 
+const std\+::vector$<$ int $>$ \& mlcpp\+::\+Dataset\+::get\+\_\+labels (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the label vector (read-\/only). 
+
+\begin{DoxyReturn}{Returns}
+Constant reference to the label vector 
+\end{DoxyReturn}
+\Hypertarget{classmlcpp_1_1_dataset_a264eb45d44561681e37ade4a8d860327}\index{mlcpp::Dataset@{mlcpp::Dataset}!normalize@{normalize}}
+\index{normalize@{normalize}!mlcpp::Dataset@{mlcpp::Dataset}}
+\doxysubsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily \label{classmlcpp_1_1_dataset_a264eb45d44561681e37ade4a8d860327} 
+void mlcpp\+::\+Dataset\+::normalize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Normalizes all features to the range \mbox{[}0, 1\mbox{]} using min-\/max scaling. 
+
+For each feature column\+: normalized\+\_\+value = (value -\/ min) / (max -\/ min)
+
+This modifies the dataset in-\/place. Features with constant values (range = 0) are left unchanged.
+
+\begin{DoxyNote}{Note}
+Use this when you need features in a bounded range \mbox{[}0, 1\mbox{]} 
+
+This is sensitive to outliers 
+
+Time complexity\+: O(n \texorpdfstring{$\ast$}{*} d) where n = samples, d = features
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classmlcpp_1_1_dataset_ae1ce2e5fffa4ec7b791025c1cd5b2916}{standardize()} for an alternative normalization method
+\end{DoxySeeAlso}
+Example usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dataset.normalize();}
+\DoxyCodeLine{\textcolor{comment}{//\ All\ features\ now\ in\ [0,\ 1]\ range}}
+
+\end{DoxyCode}
+ \Hypertarget{classmlcpp_1_1_dataset_a1b14c140e2abc0db9c133d46afcccc93}\index{mlcpp::Dataset@{mlcpp::Dataset}!num\_features@{num\_features}}
+\index{num\_features@{num\_features}!mlcpp::Dataset@{mlcpp::Dataset}}
+\doxysubsubsection{\texorpdfstring{num\_features()}{num\_features()}}
+{\footnotesize\ttfamily \label{classmlcpp_1_1_dataset_a1b14c140e2abc0db9c133d46afcccc93} 
+size\+\_\+t mlcpp\+::\+Dataset\+::num\+\_\+features (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the number of features per sample. 
+
+\begin{DoxyReturn}{Returns}
+Number of features (columns), or 0 if dataset is empty 
+\end{DoxyReturn}
+\Hypertarget{classmlcpp_1_1_dataset_af03b606152a2e4fa9690fb082e31bebf}\index{mlcpp::Dataset@{mlcpp::Dataset}!size@{size}}
+\index{size@{size}!mlcpp::Dataset@{mlcpp::Dataset}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{classmlcpp_1_1_dataset_af03b606152a2e4fa9690fb082e31bebf} 
+size\+\_\+t mlcpp\+::\+Dataset\+::size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the number of samples in the dataset. 
+
+\begin{DoxyReturn}{Returns}
+Number of samples (rows) 
+\end{DoxyReturn}
+\Hypertarget{classmlcpp_1_1_dataset_ae1ce2e5fffa4ec7b791025c1cd5b2916}\index{mlcpp::Dataset@{mlcpp::Dataset}!standardize@{standardize}}
+\index{standardize@{standardize}!mlcpp::Dataset@{mlcpp::Dataset}}
+\doxysubsubsection{\texorpdfstring{standardize()}{standardize()}}
+{\footnotesize\ttfamily \label{classmlcpp_1_1_dataset_ae1ce2e5fffa4ec7b791025c1cd5b2916} 
+void mlcpp\+::\+Dataset\+::standardize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Standardizes all features to have mean=0 and standard deviation=1. 
+
+For each feature column\+: standardized\+\_\+value = (value -\/ mean) / std\+\_\+dev
+
+This modifies the dataset in-\/place. Features with zero standard deviation are left unchanged.
+
+\begin{DoxyNote}{Note}
+Use this when features have different scales and you care about distribution 
+
+Less sensitive to outliers than \doxylink{classmlcpp_1_1_dataset_a264eb45d44561681e37ade4a8d860327}{normalize()} 
+
+Time complexity\+: O(n \texorpdfstring{$\ast$}{*} d) where n = samples, d = features
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classmlcpp_1_1_dataset_a264eb45d44561681e37ade4a8d860327}{normalize()} for min-\/max scaling alternative
+\end{DoxySeeAlso}
+Example usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dataset.standardize();}
+\DoxyCodeLine{\textcolor{comment}{//\ All\ features\ now\ have\ mean=0,\ std=1}}
+
+\end{DoxyCode}
+ \Hypertarget{classmlcpp_1_1_dataset_ac45123e439a3a5fb67d1c839703b8c24}\index{mlcpp::Dataset@{mlcpp::Dataset}!train\_test\_split@{train\_test\_split}}
+\index{train\_test\_split@{train\_test\_split}!mlcpp::Dataset@{mlcpp::Dataset}}
+\doxysubsubsection{\texorpdfstring{train\_test\_split()}{train\_test\_split()}}
+{\footnotesize\ttfamily \label{classmlcpp_1_1_dataset_ac45123e439a3a5fb67d1c839703b8c24} 
+pair$<$ \mbox{\hyperlink{classmlcpp_1_1_dataset_ae6944868a91f03c37a468773bb535b01}{Dataset}}, \mbox{\hyperlink{classmlcpp_1_1_dataset_ae6944868a91f03c37a468773bb535b01}{Dataset}} $>$ mlcpp\+::\+Dataset\+::train\+\_\+test\+\_\+split (\begin{DoxyParamCaption}\item[{double}]{test\+\_\+ratio}{ = {\ttfamily 0.1}, }\item[{int}]{seed}{ = {\ttfamily 41}}\end{DoxyParamCaption}) const}
+
+
+
+Splits the dataset into training and testing sets. 
+
+Randomly shuffles the data before splitting to ensure random distribution. Uses a seed for reproducibility.
+
+
+\begin{DoxyParams}{Parameters}
+{\em test\+\_\+ratio} & Proportion of data to use for testing (between 0.\+0 and 1.\+0, default\+: 0.\+1) \\
+\hline
+{\em seed} & Random seed for reproducibility (default\+: 41) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pair of datasets\+: \{train\+\_\+dataset, test\+\_\+dataset\}
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & If test\+\_\+ratio is not between 0.\+0 and 1.\+0\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(n) where n is the number of samples
+\end{DoxyNote}
+Example usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ [train,\ test]\ =\ dataset.train\_test\_split(0.2,\ 42);\ \ \textcolor{comment}{//\ 80\%\ train,\ 20\%\ test}}
+\DoxyCodeLine{cout\ <<\ \textcolor{stringliteral}{"{}Train:\ "{}}\ <<\ train.size()\ <<\ \textcolor{stringliteral}{"{}\ samples"{}}\ <<\ endl;}
+\DoxyCodeLine{cout\ <<\ \textcolor{stringliteral}{"{}Test:\ "{}}\ <<\ test.size()\ <<\ \textcolor{stringliteral}{"{}\ samples"{}}\ <<\ endl;}
+
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/core/Dataset.\+h\item 
+src/core/Dataset.\+cpp\end{DoxyCompactItemize}

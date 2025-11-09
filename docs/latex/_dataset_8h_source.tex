@@ -1,0 +1,63 @@
+\doxysection{Dataset.\+h}
+\hypertarget{_dataset_8h_source}{}\label{_dataset_8h_source}\index{include/core/Dataset.h@{include/core/Dataset.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ danie\ on\ 06/11/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ MLCPP\_DATASET\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ MLCPP\_DATASET\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }mlcpp\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classmlcpp_1_1_dataset_ae6944868a91f03c37a468773bb535b01}{Dataset}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classmlcpp_1_1_dataset_ae6944868a91f03c37a468773bb535b01}{Dataset}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classmlcpp_1_1_dataset_a8bdd7f9129f8ed08579d1d8ef0a7fb2f}{Dataset}}(std::vector<std::vector<double>>\ features,\ std::vector<int>\ labels);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::optional<Dataset>\ \mbox{\hyperlink{classmlcpp_1_1_dataset_a624748e7e3da9066b41458a9062f0cb0}{from\_csv}}(\textcolor{keyword}{const}\ std::string\&\ filepath,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ has\_header\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ label\_column\ =\ -\/1);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ std::pair<Dataset,\ Dataset>\ \mbox{\hyperlink{classmlcpp_1_1_dataset_ac45123e439a3a5fb67d1c839703b8c24}{train\_test\_split}}(\textcolor{keywordtype}{double}\ test\_ratio\ =\ 0.1,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ seed\ =\ 41)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmlcpp_1_1_dataset_a264eb45d44561681e37ade4a8d860327}{normalize}}();}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmlcpp_1_1_dataset_ae1ce2e5fffa4ec7b791025c1cd5b2916}{standardize}}();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::vector<double>>\&\ \mbox{\hyperlink{classmlcpp_1_1_dataset_a76d3093866cd708c9fc6d5f128cad79c}{get\_features}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>features\_;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\&\ \mbox{\hyperlink{classmlcpp_1_1_dataset_ac5c6e3124e609ecaccc841d46ba2f017}{get\_labels}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>labels\_;}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classmlcpp_1_1_dataset_af03b606152a2e4fa9690fb082e31bebf}{size}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>features\_.size();}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classmlcpp_1_1_dataset_a1b14c140e2abc0db9c133d46afcccc93}{num\_features}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>features\_.empty()\ ?\ 0\ :\ this-\/>features\_[0].size();}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ std::vector<std::vector<double>>\ features\_;\ \ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ std::vector<int>\ labels\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00173\ \ \ \ \ \};}
+\DoxyCodeLine{00174\ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//MLCPP\_DATASET\_H}}
+
+\end{DoxyCode}

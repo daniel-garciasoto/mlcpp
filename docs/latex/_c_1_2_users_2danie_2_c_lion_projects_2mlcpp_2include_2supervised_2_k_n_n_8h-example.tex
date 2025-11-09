@@ -1,0 +1,59 @@
+\doxysection{C\+:/\+Users/danie/\+CLion\+Projects/mlcpp/include/supervised/\+KNN.\+h}
+\hypertarget{_c_1_2_users_2danie_2_c_lion_projects_2mlcpp_2include_2supervised_2_k_n_n_8h-example}{}\label{_c_1_2_users_2danie_2_c_lion_projects_2mlcpp_2include_2supervised_2_k_n_n_8h-example}Constructs a KNN classifier with specified parameters.
+
+Constructs a KNN classifier with specified parameters.
+\begin{DoxyParams}{Parameters}
+{\em k} & Number of nearest neighbors to consider (default\+: 3) \\
+\hline
+{\em distance} & Distance metric function to use (default\+: euclidean\+\_\+distance)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+k should be odd to avoid ties in binary classification 
+
+Larger k values make the model more robust but less sensitive to local patterns
+\end{DoxyNote}
+KNN model1(5); // k=5, Euclidean distance KNN model2(3, manhattan\+\_\+distance); // k=3, Manhattan distance
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{//}}
+\DoxyCodeLine{\textcolor{comment}{//\ Created\ by\ danie\ on\ 06/11/2025.}}
+\DoxyCodeLine{\textcolor{comment}{//}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#ifndef\ MLCPP\_KNN\_H}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ MLCPP\_KNN\_H}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}../core/Dataset.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}../core/Distance.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace\ }mlcpp\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classmlcpp_1_1_k_n_n}{KNN}}\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ KNN(\textcolor{keywordtype}{int}\ k\ =\ 3,\ DistanceMetric\ distance\ =\ euclidean\_distance);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ fit(Dataset\&\ dataset);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ predict(\textcolor{keyword}{const}\ std::vector<double>\&\ sample)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::vector<int>\ predict(\textcolor{keyword}{const}\ std::vector<std::vector<double>>\&\ samples)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ score(\textcolor{keyword}{const}\ Dataset\&\ test\_dataset)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmlcpp_1_1_k_n_n_aa669303e8f538f018dd2d1389f633532}{get\_k}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ k\_;\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ k\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ DistanceMetric\ distance\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::vector<std::vector<double>>\ X\_train\_;\ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::vector<int>\ y\_train\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::vector<size\_t>\ find\_k\_nearest(\textcolor{keyword}{const}\ std::vector<double>\&\ sample)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ majority\_vote(\textcolor{keyword}{const}\ std::vector<size\_t>\&\ neighbor\_indices)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\ \ \ \ \};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//MLCPP\_KNN\_H}}
+
+\end{DoxyCodeInclude}
+ 

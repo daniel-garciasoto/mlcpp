@@ -1,0 +1,43 @@
+\doxysection{KNN.\+h}
+\hypertarget{_k_n_n_8h_source}{}\label{_k_n_n_8h_source}\index{include/supervised/KNN.h@{include/supervised/KNN.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ danie\ on\ 06/11/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ MLCPP\_KNN\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ MLCPP\_KNN\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}../core/Dataset.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}../core/Distance.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }mlcpp\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{class\ }KNN\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ KNN(\textcolor{keywordtype}{int}\ k\ =\ 3,\ DistanceMetric\ distance\ =\ euclidean\_distance);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ fit(\mbox{\hyperlink{classmlcpp_1_1_dataset}{Dataset}}\&\ dataset);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ predict(\textcolor{keyword}{const}\ std::vector<double>\&\ sample)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ std::vector<int>\ predict(\textcolor{keyword}{const}\ std::vector<std::vector<double>>\&\ samples)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ score(\textcolor{keyword}{const}\ \mbox{\hyperlink{classmlcpp_1_1_dataset}{Dataset}}\&\ test\_dataset)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmlcpp_1_1_k_n_n_aa669303e8f538f018dd2d1389f633532}{get\_k}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ k\_;\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ k\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ DistanceMetric\ distance\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ std::vector<std::vector<double>>\ X\_train\_;\ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ std::vector<int>\ y\_train\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ std::vector<size\_t>\ find\_k\_nearest(\textcolor{keyword}{const}\ std::vector<double>\&\ sample)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ majority\_vote(\textcolor{keyword}{const}\ std::vector<size\_t>\&\ neighbor\_indices)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00147\ \ \ \ \ \};}
+\DoxyCodeLine{00148\ \}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//MLCPP\_KNN\_H}}
+
+\end{DoxyCode}

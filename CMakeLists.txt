@@ -11,4 +11,5 @@ add_executable(mlcpp main.cpp
         include/core/Dataset.h
         src/core/Metrics.cpp
         include/core/Metrics.h
+        Doxyfile
 )

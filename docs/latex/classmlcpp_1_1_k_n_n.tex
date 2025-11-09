@@ -1,0 +1,71 @@
+\doxysection{mlcpp\+::KNN Class Reference}
+\hypertarget{classmlcpp_1_1_k_n_n}{}\label{classmlcpp_1_1_k_n_n}\index{mlcpp::KNN@{mlcpp::KNN}}
+
+
+K-\/\+Nearest Neighbors (\doxylink{classmlcpp_1_1_k_n_n}{KNN}) classifier for supervised learning.  
+
+
+
+
+{\ttfamily \#include $<$KNN.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmlcpp_1_1_k_n_n_aaf9213a479ca08120852fe05c454963a}\label{classmlcpp_1_1_k_n_n_aaf9213a479ca08120852fe05c454963a} 
+{\bfseries KNN} (int k=3, Distance\+Metric distance=euclidean\+\_\+distance)
+\item 
+\Hypertarget{classmlcpp_1_1_k_n_n_ae37e23f40d4b4e647977a5512d7762ff}\label{classmlcpp_1_1_k_n_n_ae37e23f40d4b4e647977a5512d7762ff} 
+void {\bfseries fit} (\mbox{\hyperlink{classmlcpp_1_1_dataset}{Dataset}} \&dataset)
+\item 
+\Hypertarget{classmlcpp_1_1_k_n_n_aa1684cae3f746938f4f98628ddbd07e6}\label{classmlcpp_1_1_k_n_n_aa1684cae3f746938f4f98628ddbd07e6} 
+int {\bfseries predict} (const std\+::vector$<$ double $>$ \&sample) const
+\item 
+\Hypertarget{classmlcpp_1_1_k_n_n_a3c01ac2d0fb1c0122533bc9f04df6fd1}\label{classmlcpp_1_1_k_n_n_a3c01ac2d0fb1c0122533bc9f04df6fd1} 
+std\+::vector$<$ int $>$ {\bfseries predict} (const std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&samples) const
+\item 
+\Hypertarget{classmlcpp_1_1_k_n_n_a619ac73a221f749f8d65256c89ede69c}\label{classmlcpp_1_1_k_n_n_a619ac73a221f749f8d65256c89ede69c} 
+double {\bfseries score} (const \mbox{\hyperlink{classmlcpp_1_1_dataset}{Dataset}} \&test\+\_\+dataset) const
+\item 
+int \mbox{\hyperlink{classmlcpp_1_1_k_n_n_aa669303e8f538f018dd2d1389f633532}{get\+\_\+k}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of neighbors (k) used by the classifier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+K-\/\+Nearest Neighbors (\doxylink{classmlcpp_1_1_k_n_n}{KNN}) classifier for supervised learning. 
+
+A non-\/parametric, lazy learning algorithm that classifies samples based on the majority vote of their k nearest neighbors in the feature space.
+
+\begin{DoxyNote}{Note}
+This is a "{}lazy"{} algorithm -\/ training only stores the data, all computation happens during prediction. 
+\end{DoxyNote}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{_c_1_2_users_2danie_2_c_lion_projects_2mlcpp_2include_2supervised_2_k_n_n_8h-example}{C\+:/\+Users/danie/\+CLion\+Projects/mlcpp/include/supervised/\+KNN.\+h}}.\end{Desc}
+
+
+\label{doc-func-members}
+\Hypertarget{classmlcpp_1_1_k_n_n_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmlcpp_1_1_k_n_n_aa669303e8f538f018dd2d1389f633532}\index{mlcpp::KNN@{mlcpp::KNN}!get\_k@{get\_k}}
+\index{get\_k@{get\_k}!mlcpp::KNN@{mlcpp::KNN}}
+\doxysubsubsection{\texorpdfstring{get\_k()}{get\_k()}}
+{\footnotesize\ttfamily \label{classmlcpp_1_1_k_n_n_aa669303e8f538f018dd2d1389f633532} 
+int mlcpp\+::\+KNN\+::get\+\_\+k (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the number of neighbors (k) used by the classifier. 
+
+\begin{DoxyReturn}{Returns}
+The k value 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{_c_1_2_users_2danie_2_c_lion_projects_2mlcpp_2include_2supervised_2_k_n_n_8h-example}{C\+:/\+Users/danie/\+CLion\+Projects/mlcpp/include/supervised/\+KNN.\+h}}.\end{Desc}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/supervised/KNN.\+h\item 
+src/supervised/KNN.\+cpp\end{DoxyCompactItemize}
