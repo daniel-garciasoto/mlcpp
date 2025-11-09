@@ -35,7 +35,7 @@ int main() {
 
         // 4. Train KNN
         cout << "Training KNN..." << endl;
-        mlcpp::KNN model(3);
+        mlcpp::KNN model(3,mlcpp::manhattan_distance);
         model.fit(train);
         cout << "Model trained with k=" << model.get_k() << endl;
 
