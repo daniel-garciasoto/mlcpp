@@ -5,9 +5,14 @@
 #ifndef MLCPP_METRICS_H
 #define MLCPP_METRICS_H
 
+namespace mlcpp {
+    class Metrics {
+    public:
 
-class Metrics {
-};
+
+    };
+}
+
 
 
 #endif //MLCPP_METRICS_H

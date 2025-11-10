@@ -12,4 +12,6 @@ add_executable(mlcpp main.cpp
         src/core/Metrics.cpp
         include/core/Metrics.h
         Doxyfile
+        src/supervised/LinearRegression.cpp
+        include/supervised/LinearRegression.h
 )
