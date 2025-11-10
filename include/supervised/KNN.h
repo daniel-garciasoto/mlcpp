@@ -29,9 +29,11 @@ namespace mlcpp {
          * @note k should be odd to avoid ties in binary classification
          * @note Larger k values make the model more robust but less sensitive to local patterns
          *
-         * @example
+         * Example usage:
+         * @code
          * KNN model1(5);                              // k=5, Euclidean distance
          * KNN model2(3, manhattan_distance);          // k=3, Manhattan distance
+         * @endcode
          */
         explicit KNN(int k = 3, DistanceMetric distance = euclidean_distance);
 
@@ -43,12 +45,14 @@ namespace mlcpp {
          *
          * @param dataset Training dataset containing features and labels
          *
-         * @note This operation is O(1) - just stores references to the data
+         * @note Time complexity: O(1) - just stores references to the data
          * @note Any previous training data is overwritten
          *
-         * @example
+         * Example usage:
+         * @code
          * KNN model(3);
          * model.fit(train_dataset);
+         * @endcode
          */
         void fit(Dataset& dataset);
 
@@ -61,12 +65,14 @@ namespace mlcpp {
          * @param sample Feature vector of the sample to classify
          * @return Predicted class label (integer)
          *
-         * @note Complexity: O(n * d) where n = training samples, d = features
+         * @note Time complexity: O(n * d) where n = training samples, d = features
          * @note The model must be trained (fit) before calling this
          *
-         * @example
+         * Example usage:
+         * @code
          * vector<double> sample = {5.1, 3.5, 1.4, 0.2};
          * int label = model.predict(sample);  // Returns 0, 1, or 2
+         * @endcode
          */
         int predict(const std::vector<double>& sample) const;
 
@@ -78,13 +84,15 @@ namespace mlcpp {
          * @param samples 2D vector where each row is a sample to classify
          * @return Vector of predicted labels, one for each input sample
          *
-         * @note Complexity: O(m * n * d) where m = test samples,
-         *                   n = training samples, d = features
+         * @note Time complexity: O(m * n * d) where m = test samples,
+         *                        n = training samples, d = features
          *
-         * @example
+         * Example usage:
+         * @code
          * vector<vector<double>> samples = {{5.1, 3.5, 1.4, 0.2},
          *                                   {6.3, 2.9, 5.6, 1.8}};
          * vector<int> predictions = model.predict(samples);  // {0, 2}
+         * @endcode
          */
         std::vector<int> predict(const std::vector<std::vector<double>>& samples) const;
 
@@ -98,10 +106,13 @@ namespace mlcpp {
          * @return Accuracy as a value between 0.0 (0%) and 1.0 (100%)
          *
          * @note The model must be trained before evaluation
+         * @note Time complexity: O(m * n * d) where m = test samples
          *
-         * @example
+         * Example usage:
+         * @code
          * double accuracy = model.score(test_dataset);
          * cout << "Accuracy: " << (accuracy * 100) << "%" << endl;  // "Accuracy: 96.7%"
+         * @endcode
          */
         double score(const Dataset& test_dataset) const;
 
@@ -127,7 +138,7 @@ namespace mlcpp {
          * @param sample Feature vector to find neighbors for
          * @return Vector of indices pointing to the k nearest training samples
          *
-         * @note Uses partial_sort for efficiency - O(n log k) complexity
+         * @note Time complexity: O(n log k) using partial_sort
          */
         std::vector<size_t> find_k_nearest(const std::vector<double>& sample) const;
 
@@ -142,8 +153,10 @@ namespace mlcpp {
          *
          * @note In case of a tie, returns the label that appears first
          *       (implementation dependent on map ordering)
+         * @note Time complexity: O(k) where k is the number of neighbors
          */
         int majority_vote(const std::vector<size_t>& neighbor_indices) const;
     };
 }
+
 #endif //MLCPP_KNN_H
